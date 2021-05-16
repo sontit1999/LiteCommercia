@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="LiteCommerceDB" Class="DataClasses1DataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-CMEJ8G1\SQLEXPRESS;Initial Catalog=LiteCommerceDB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="LiteCommerceDBConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-Q6EAEVP\SQLEXPRESS;Initial Catalog=LiteCommerceDB;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="LiteCommerceDBConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Categories" Member="Categories">
     <Type Name="Category">
       <Column Name="CategoryID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -109,14 +109,6 @@
       <Association Name="Supplier_Product" Member="Supplier" ThisKey="SupplierID" OtherKey="SupplierID" Type="Supplier" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.Shippers" Member="Shippers">
-    <Type Name="Shipper">
-      <Column Name="ShipperID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
-      <Column Name="ShipperName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-      <Column Name="Phone" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Association Name="Shipper_Order" Member="Orders" ThisKey="ShipperID" OtherKey="ShipperID" Type="Order" />
-    </Type>
-  </Table>
   <Table Name="dbo.Suppliers" Member="Suppliers">
     <Type Name="Supplier">
       <Column Name="SupplierID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -128,6 +120,14 @@
       <Column Name="Country" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Column Name="Phone" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
       <Association Name="Supplier_Product" Member="Products" ThisKey="SupplierID" OtherKey="SupplierID" Type="Product" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Shippers" Member="Shippers">
+    <Type Name="Shipper">
+      <Column Name="ShipperID" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="ShipperName" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="Phone" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Association Name="Shipper_Order" Member="Orders" ThisKey="ShipperID" OtherKey="ShipperID" Type="Order" />
     </Type>
   </Table>
 </Database>

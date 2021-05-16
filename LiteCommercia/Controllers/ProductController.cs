@@ -46,8 +46,15 @@ namespace LiteCommercia.Controllers
         public ActionResult detail(int? id = 0)
         {
             var sp = UtilsDatabase.getDaTaBase().Products.Where(p => p.ProductID == id).FirstOrDefault();
-           
+            var listAttribute = UtilsDatabase.getDaTaBase().ProductAttributes.Where(p => p.ProductID == id).ToList();
+            var listGallery  = UtilsDatabase.getDaTaBase().ProductGalleries.Where(p => p.ProductID == id).ToList();
+            if (listGallery == null)
+            {
+                listGallery = new List<ProductGallery>(); 
+            }
             ViewBag.sp = sp;
+            ViewBag.listAttribute = listAttribute;
+            ViewBag.listGallery = listGallery;
             return View();
         }
         public ActionResult Search(string keyword="")

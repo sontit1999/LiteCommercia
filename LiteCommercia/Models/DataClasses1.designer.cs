@@ -57,16 +57,16 @@ namespace LiteCommercia.Models
     partial void InsertProduct(Product instance);
     partial void UpdateProduct(Product instance);
     partial void DeleteProduct(Product instance);
-    partial void InsertShipper(Shipper instance);
-    partial void UpdateShipper(Shipper instance);
-    partial void DeleteShipper(Shipper instance);
     partial void InsertSupplier(Supplier instance);
     partial void UpdateSupplier(Supplier instance);
     partial void DeleteSupplier(Supplier instance);
+    partial void InsertShipper(Shipper instance);
+    partial void UpdateShipper(Shipper instance);
+    partial void DeleteShipper(Shipper instance);
     #endregion
 		
 		public DataClasses1DataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["LiteCommerceDBConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["LiteCommerceDBConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -167,19 +167,19 @@ namespace LiteCommercia.Models
 			}
 		}
 		
-		public System.Data.Linq.Table<Shipper> Shippers
-		{
-			get
-			{
-				return this.GetTable<Shipper>();
-			}
-		}
-		
 		public System.Data.Linq.Table<Supplier> Suppliers
 		{
 			get
 			{
 				return this.GetTable<Supplier>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Shipper> Shippers
+		{
+			get
+			{
+				return this.GetTable<Shipper>();
 			}
 		}
 	}
@@ -2480,144 +2480,6 @@ namespace LiteCommercia.Models
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Shippers")]
-	public partial class Shipper : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _ShipperID;
-		
-		private string _ShipperName;
-		
-		private string _Phone;
-		
-		private EntitySet<Order> _Orders;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnShipperIDChanging(int value);
-    partial void OnShipperIDChanged();
-    partial void OnShipperNameChanging(string value);
-    partial void OnShipperNameChanged();
-    partial void OnPhoneChanging(string value);
-    partial void OnPhoneChanged();
-    #endregion
-		
-		public Shipper()
-		{
-			this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShipperID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int ShipperID
-		{
-			get
-			{
-				return this._ShipperID;
-			}
-			set
-			{
-				if ((this._ShipperID != value))
-				{
-					this.OnShipperIDChanging(value);
-					this.SendPropertyChanging();
-					this._ShipperID = value;
-					this.SendPropertyChanged("ShipperID");
-					this.OnShipperIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShipperName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string ShipperName
-		{
-			get
-			{
-				return this._ShipperName;
-			}
-			set
-			{
-				if ((this._ShipperName != value))
-				{
-					this.OnShipperNameChanging(value);
-					this.SendPropertyChanging();
-					this._ShipperName = value;
-					this.SendPropertyChanged("ShipperName");
-					this.OnShipperNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="NVarChar(255)")]
-		public string Phone
-		{
-			get
-			{
-				return this._Phone;
-			}
-			set
-			{
-				if ((this._Phone != value))
-				{
-					this.OnPhoneChanging(value);
-					this.SendPropertyChanging();
-					this._Phone = value;
-					this.SendPropertyChanged("Phone");
-					this.OnPhoneChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Shipper_Order", Storage="_Orders", ThisKey="ShipperID", OtherKey="ShipperID")]
-		public EntitySet<Order> Orders
-		{
-			get
-			{
-				return this._Orders;
-			}
-			set
-			{
-				this._Orders.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Orders(Order entity)
-		{
-			this.SendPropertyChanging();
-			entity.Shipper = this;
-		}
-		
-		private void detach_Orders(Order entity)
-		{
-			this.SendPropertyChanging();
-			entity.Shipper = null;
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Suppliers")]
 	public partial class Supplier : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -2873,6 +2735,144 @@ namespace LiteCommercia.Models
 		{
 			this.SendPropertyChanging();
 			entity.Supplier = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Shippers")]
+	public partial class Shipper : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _ShipperID;
+		
+		private string _ShipperName;
+		
+		private string _Phone;
+		
+		private EntitySet<Order> _Orders;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnShipperIDChanging(int value);
+    partial void OnShipperIDChanged();
+    partial void OnShipperNameChanging(string value);
+    partial void OnShipperNameChanged();
+    partial void OnPhoneChanging(string value);
+    partial void OnPhoneChanged();
+    #endregion
+		
+		public Shipper()
+		{
+			this._Orders = new EntitySet<Order>(new Action<Order>(this.attach_Orders), new Action<Order>(this.detach_Orders));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShipperID", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int ShipperID
+		{
+			get
+			{
+				return this._ShipperID;
+			}
+			set
+			{
+				if ((this._ShipperID != value))
+				{
+					this.OnShipperIDChanging(value);
+					this.SendPropertyChanging();
+					this._ShipperID = value;
+					this.SendPropertyChanged("ShipperID");
+					this.OnShipperIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ShipperName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string ShipperName
+		{
+			get
+			{
+				return this._ShipperName;
+			}
+			set
+			{
+				if ((this._ShipperName != value))
+				{
+					this.OnShipperNameChanging(value);
+					this.SendPropertyChanging();
+					this._ShipperName = value;
+					this.SendPropertyChanged("ShipperName");
+					this.OnShipperNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Phone", DbType="NVarChar(255)")]
+		public string Phone
+		{
+			get
+			{
+				return this._Phone;
+			}
+			set
+			{
+				if ((this._Phone != value))
+				{
+					this.OnPhoneChanging(value);
+					this.SendPropertyChanging();
+					this._Phone = value;
+					this.SendPropertyChanged("Phone");
+					this.OnPhoneChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Shipper_Order", Storage="_Orders", ThisKey="ShipperID", OtherKey="ShipperID")]
+		public EntitySet<Order> Orders
+		{
+			get
+			{
+				return this._Orders;
+			}
+			set
+			{
+				this._Orders.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Orders(Order entity)
+		{
+			this.SendPropertyChanging();
+			entity.Shipper = this;
+		}
+		
+		private void detach_Orders(Order entity)
+		{
+			this.SendPropertyChanging();
+			entity.Shipper = null;
 		}
 	}
 }
