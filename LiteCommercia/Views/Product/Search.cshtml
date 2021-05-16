@@ -1,0 +1,61 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    .title_cagetory {
+        color: black;
+        font-family: 'Adobe Devanagari';
+        display: inline-block;
+        text-align: center;
+        font-size: 35px;
+        margin: 0 auto;
+    }
+
+        .title_cagetory:hover {
+            color: orange;
+        }
+
+    .itemProduct {
+        box-sizing: border-box;
+        padding: 20px;
+    }
+
+        .itemProduct img {
+            width: 100%;
+            height: auto;
+        }
+
+        .itemProduct h3 {
+            color: black;
+            font-size: 15px;
+        }
+
+            .itemProduct h3:hover {
+                color: orange;
+            }
+
+    a {
+        text-decoration: none !important;
+    }
+</style>
+<h2>Kết quả tìm kiếm cho <b> @ViewBag.keyword</b></h2>
+
+<div class="row newproduct">
+    @foreach (var item in @ViewBag.listSP)
+    {
+        <div class="col-md-3 itemProduct">
+            <a style="text-decoration:none;" href="/Product/detail?id=@item.ProductID">
+                <img src="@item.Photo" />
+                <h3>
+                    @item.ProductName
+                </h3>
+            </a>
+
+            <p>@item.Price $</p>
+        </div>
+    }
+</div>
+
+

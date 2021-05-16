@@ -1,0 +1,238 @@
+﻿
+@{
+    ViewBag.Title = "detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    img {
+        vertical-align: middle;
+    }
+
+    /* Position the image container (needed to position the left and right arrows) */
+    .container {
+        position: relative;
+    }
+
+    /* Hide the images by default */
+    .mySlides {
+        display: none;
+    }
+
+    /* Add a pointer when hovering over the thumbnail images */
+    .cursor {
+        cursor: pointer;
+    }
+
+    /* Next & previous buttons */
+    .prev,
+    .next {
+        cursor: pointer;
+        position: absolute;
+        top: 40%;
+        width: auto;
+        padding: 16px;
+        margin-top: -50px;
+        color: white;
+        font-weight: bold;
+        font-size: 20px;
+        border-radius: 0 3px 3px 0;
+        user-select: none;
+        -webkit-user-select: none;
+    }
+
+    /* Position the "next button" to the right */
+    .next {
+        right: 0;
+        border-radius: 3px 0 0 3px;
+    }
+
+        /* On hover, add a black background color with a little bit see-through */
+        .prev:hover,
+        .next:hover {
+            background-color: rgba(0, 0, 0, 0.8);
+        }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+    }
+
+    /* Container for image text */
+    .caption-container {
+        text-align: center;
+        background-color: #222;
+        padding: 2px 16px;
+        color: white;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    /* Six columns side by side */
+    .column {
+        float: left;
+        width: 16.66%;
+    }
+
+    /* Add a transparency effect for thumnbail images */
+    .demo {
+        opacity: 0.6;
+    }
+
+        .active,
+        .demo:hover {
+            opacity: 1;
+        }
+    .price {
+        color: red;
+    }
+
+    .describe h5 {
+        font-weight: 600;
+    }
+
+    .bold {
+        font-weight: 600;
+    }
+
+    .titleProduct {
+        font-size: 19px;
+    }
+
+    .itemProduct {
+        margin-top: 10px;
+    }
+
+        .itemProduct img {
+            width: 100%;
+            height: auto;
+        }
+
+        .itemProduct h3 {
+            color: black;
+            font-size: 15px;
+        }
+
+            .itemProduct h3:hover {
+                color: orange;
+            }
+
+    a {
+        text-decoration: none !important;
+    }
+</style>
+<div class="row">
+    <form method="post" action="#">
+
+        <div class="col-md-6">
+            <div class="container" style="width:100%;" >
+                <div class="mySlides">
+                    <div class="numbertext">1 / 4</div>
+                    <img src="@ViewBag.sp.Photo" style="width:100%;height:250px;">
+                </div>
+
+                <div class="mySlides">
+                    <div class="numbertext">2 / 4</div>
+                    <img class="img-responsive" src="https://cdn-img.thethao247.vn/upload/kienlv/2020/09/11/tuyen-thu-dt-viet-nam-cong-khai-ban-gai-xinh-nhu-mong1599795990.png" style="width:100%;height:250px;">
+                </div>
+
+                <div class="mySlides">
+                    <div class="numbertext">3 / 4</div>
+                    <img class="img-responsive" src="https://i.pinimg.com/736x/b9/d7/da/b9d7da269c609496652d89408a3e3fd3.jpg" style="width:100%;height:250px;">
+                </div>
+
+                <div class="mySlides">
+                    <div class="numbertext">4 / 4</div>
+                    <img class="img-responsive" src="https://media.travelmag.vn/resize/800x800/files/linhchi/2020/07/22/gai-xinh-tha-thinh-bang-nu-hon-ngot-ngao-nhieu-nam-sinh-hi-hung-cho-doi-va-cai-ket-cuoi-ra-nuoc-mat-dspl-1-100808.jpg" style="width:100%;height:250px;">
+                </div>          
+                <a class="prev" onclick="plusSlides(-1)">❮</a>
+                <a class="next" onclick="plusSlides(1)">❯</a>
+
+                <div class="row" style="margin: 25px;">
+                    <div class="column">
+                        <img class="demo cursor img-responsive" src="@ViewBag.sp.Photo" style="width:100%;height:50px;" onclick="currentSlide(1)" alt="The Woods">
+                    </div>
+                    <div class="column">
+                        <img class="demo cursor  img-responsive" src="https://cdn-img.thethao247.vn/upload/kienlv/2020/09/11/tuyen-thu-dt-viet-nam-cong-khai-ban-gai-xinh-nhu-mong1599795990.png" style="width:100%;height:50px;" onclick="currentSlide(2)" alt="Cinque Terre">
+                    </div>
+                    <div class="column">
+                        <img class="demo cursor  img-responsive" src="https://i.pinimg.com/736x/b9/d7/da/b9d7da269c609496652d89408a3e3fd3.jpg" style="width:100%;height:50px;" onclick="currentSlide(3)" alt="Mountains and fjords">
+                    </div>
+                    <div class="column">
+                        <img class="demo cursor  img-responsive" src="https://media.travelmag.vn/resize/800x800/files/linhchi/2020/07/22/gai-xinh-tha-thinh-bang-nu-hon-ngot-ngao-nhieu-nam-sinh-hi-hung-cho-doi-va-cai-ket-cuoi-ra-nuoc-mat-dspl-1-100808.jpg" style="width:100%;height:50px;" onclick="currentSlide(4)" alt="Northern Lights">
+                    </div>
+                    
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <h3 class="titleProduct bold">@ViewBag.sp.ProductName</h3>
+            <p class="price bold">@ViewBag.sp.Price $</p>
+            <div style="padding:6px;margin-top:10px;" class="size">
+                <input style="padding:5px;" type="number" name="SoLuong" min="1" value="1" />
+
+            </div>
+
+            <div style="margin-top:10px;">
+                <input type="submit" value="Thêm vào giỏ hàng" class="btn btn-warning">
+                <a href="/home/index" class="btn btn-info">Tiếp tục mua</a>
+            </div>
+            <div class="describe">
+                <h5>Mô tả</h5>
+                <p>
+                    @ViewBag.sp.Unit
+                </p>
+                <p>
+                    <b>Xuất xứ:</b> Japanes
+                </p>
+                <p>
+                    <b>Chất liệu</b> Nhựa
+                </p>
+                <p>
+                    <b>Công nghệ</b> Jav
+                </p>
+            </div>
+        </div>
+    </form>
+
+</div>
+<hr />
+<script>
+    var slideIndex = 1;
+    showSlides(slideIndex);
+
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
+    }
+
+    function currentSlide(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        var i;
+        var slides = document.getElementsByClassName("mySlides");
+        var dots = document.getElementsByClassName("demo");
+        var captionText = document.getElementById("caption");
+        if (n > slides.length) { slideIndex = 1 }
+        if (n < 1) { slideIndex = slides.length }
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";
+        }
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex - 1].style.display = "block";
+        dots[slideIndex - 1].className += " active";
+        captionText.innerHTML = dots[slideIndex - 1].alt;
+    }
+</script>
+
